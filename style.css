@@ -1,0 +1,23 @@
+.form-wrapper {
+    display: grid;
+    text-align: center;
+    justify-content: center;
+}
+
+.form-wrapper div {
+    margin: 4px;
+}
+
+.formNotaFiscal button {
+    margin: 8px;
+}
+
+.formButton {
+    width: 15vw;
+}
+
+.notaFiscal {
+    display: grid;
+    text-align: center;
+    justify-content: center;
+}

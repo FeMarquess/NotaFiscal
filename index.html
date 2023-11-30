@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emissão de Nota Fiscal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="form-wrapper">
+        <h2>Emissão de Nota Fiscal de Serviço</h2>
+        <div>
+            <label for="clienteNome">Nome do Cliente:</label>
+            <input type="text" id="clienteNome" placeholder="Nome do Cliente">
+        </div>
+        <div>
+            <label for="clienteDocumento">CPF ou RG do Cliente:</label>
+            <input type="text" id="clienteDocumento" placeholder="CPF ou RG do Cliente">
+        </div>
+        <div>
+            <label for="emissorDocumento">CPF ou CNPJ do Emissor:</label>
+            <input type="text" id="emissorDocumento" placeholder="CPF ou CNPJ do Emissor">
+        </div>
+        <div>
+            <label for="valorServico">Valor do Serviço:</label>
+            <input type="text" id="valorServico" placeholder="Valor do Serviço">
+        </div>
+        <div>
+            <label for="imposto">Imposto (%):</label>
+            <input type="text" id="imposto" placeholder="Imposto em %">
+        </div>
+        <div>
+            <button onclick="gerarNotaFiscal()">Emitir Nota Fiscal</button>
+        </div>
+        <div id="notaFiscal">
+            <h3>Nota Fiscal de Serviço</h3>
+            <p><strong>Cliente:</strong> <span id="nfCliente"></span></p>
+            <p><strong>Documento do Cliente:</strong> <span id="nfClienteDocumento"></span></p>
+            <p><strong>Emissor:</strong> <span id="nfEmissor"></span></p>
+            <p><strong>Valor do Serviço:</strong> R$ <span id="nfValor"></span></p>
+            <p><strong>Imposto (%):</strong> <span id="nfImposto"></span></p>
+            <p><strong>Impostos:</strong> R$ <span id="nfImpostos"></span></p>
+            <p><strong>Total:</strong> R$ <span id="nfTotal"></span></p>
+        </div>
+
+        <script>
+            function gerarNotaFiscal() {
+                var clienteNome = document.getElementById('clienteNome').value;
+                var clienteDocumento = document.getElementById('clienteDocumento').value;
+                var emissorDocumento = document.getElementById('emissorDocumento').value;
+                var valorServico = parseFloat(document.getElementById('valorServico').value);
+                var impostoPercentual = parseFloat(document.getElementById('imposto').value) || 0;
+
+                var impostos = (impostoPercentual / 100) * valorServico;
+
+                var total = valorServico + impostos;
+
+                document.getElementById('nfCliente').innerText = clienteNome;
+                document.getElementById('nfClienteDocumento').innerText = clienteDocumento;
+                document.getElementById('nfEmissor').innerText = emissorDocumento;
+                document.getElementById('nfValor').innerText = valorServico.toFixed(2);
+                document.getElementById('nfImposto').innerText = impostoPercentual.toFixed(2) + "%";
+                document.getElementById('nfImpostos').innerText = impostos.toFixed(2);
+                document.getElementById('nfTotal').innerText = total.toFixed(2);
+
+                document.getElementById('notaFiscal').style.display = 'block';
+            }
+        </script>
+
+</body>
+
+</html>
